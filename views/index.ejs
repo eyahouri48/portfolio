@@ -1,0 +1,29 @@
+<%- include("./partials/header.ejs"); %>
+<div class="container">
+    <div class="author">
+        <h1 class="author__heading">Hi, welcome to my blog.</h1>
+        <p class="author__body">I'm Eya , web developer and computer science student.</p>
+    </div>
+    <img src="/images/blog.png" alt="blog image" class="hero-image" width="981" height="528">
+    <section class="articles">
+        <h2 class="articles__heading">Latest Posts</h2>
+        <ul class="article-ul">
+            <% posts.forEach(post => { %>
+                <li class="article-li">
+                    <a href="/edit/<%= post.id %>">
+                        <span><%= post.title %></span>
+                        <span class="article-list__date"><%= post.date %></span>
+                    </a>
+                    <form action="/delete/<%= post.id %>" method="POST">
+                        <button type="submit" class="btn-delete" onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
+                    </form>
+                </li>
+                </li>
+            <% }); %>
+        </ul>
+        <a href="/new" class="pagination">&lt; Create new Posts</a>
+    </section>
+</div>
+
+<script src="/js/script.js"></script>
+<%- include("./partials/footer.ejs"); %>
